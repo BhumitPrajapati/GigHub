@@ -7,18 +7,19 @@ const cookieParser = require("cookie-parser");
 const http = require("http");
 const { Server } = require("socket.io");
 const { setupSocket } = require("./lib/socket.lib");
+const path = require("path");
 
 const authRoutes = require("./routes/authRoutes");
 const listingRoutes = require("./routes/listingRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const messagesRoutes = require("./routes/messageRoutes");
 
-const path = require("path");
-
 dotenv.config();
 connectDB();
 
 const app = express();
+
+const _dirname = path.resolve();
 app.use(cookieParser());
 
 const corsOptions = {
@@ -33,6 +34,7 @@ app.options("*", cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 app.use("/api", authRoutes);
 app.use("/api/listings", listingRoutes);
@@ -49,21 +51,17 @@ const io = new Server(server, {
   }
 });
 
-
 const { userSocketMap } = setupSocket(io);
 
 app.set('io', io);
 app.set('userSocketMap', userSocketMap)
 
-const PORT = 5000;
-const resolvedPath = path.resolve;
+app.use(express.static(path.join(_dirname, "/frontend/dist")));
+app.get("*", (_, res) => {
+  res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
+});
 
-if (process.env.NODE_ENV === "Production") {
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(resolvedPath, "../frontend", "index.html"))
-  })
-}
-
+const PORT = process.env.PORT || 5029;
 server.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
 });

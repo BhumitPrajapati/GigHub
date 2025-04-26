@@ -35,7 +35,6 @@ function App() {
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <AlertProvider>
             <Routes>
-              <Route path="" element={<Login />} />
               <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
@@ -44,7 +43,6 @@ function App() {
                 <Route path="/create-job" element={<CreateJob />} />
                 <Route path="/my-jobs/:userId" element={<GetListingByUserPage />} />
                 <Route path="/edit-listing/:id" element={<UpdateListingByUserPage />} />
-                <Route path="" element={<Login />} />
                 <Route path="/chat" element={<ChatPage />} />
                 <Route path="/dashboard/myAccount/profile" element={<ProfilePage />} />
               </Route>
