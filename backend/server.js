@@ -22,7 +22,7 @@ const app = express();
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://gighub-pbj.onrender.com/",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PETCH"],
   allowedHeaders: ["Content-Type", "Authorization", "token"]
@@ -42,7 +42,7 @@ app.use("/api/messages/", messagesRoutes);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://gighub-pbj.onrender.com/",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization", "token"]
