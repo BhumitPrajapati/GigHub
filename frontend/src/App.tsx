@@ -35,6 +35,8 @@ function App() {
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <AlertProvider>
             <Routes>
+              <Route path="" element={<Login />} />
+              <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route element={<PrivateRoute />}>
