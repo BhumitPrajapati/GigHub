@@ -32,7 +32,6 @@ export function SignUpForm({
     e.preventDefault();
     try {
       const response = await axios.post(`${config.backendUrl}/createUser`, { email, password, firstName, LastName });
-      console.log(response);
       if (response.data.message === 'User registered successfully') {
         navigate('/login');
       } else {

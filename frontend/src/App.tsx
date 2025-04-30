@@ -29,7 +29,7 @@ function App() {
 
   // console.log({ authUser });
   return (
-    <GoogleOAuthProvider clientId={config.googleClientId}>
+    <GoogleOAuthProvider clientId={config.googleClientId || ""}>
 
       <Router>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">

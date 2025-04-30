@@ -2,7 +2,6 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const { connectDB } = require("./config/db");
-// const { server } = require("./lib/socket")
 const cookieParser = require("cookie-parser");
 const http = require("http");
 const { Server } = require("socket.io");
@@ -22,8 +21,11 @@ const app = express();
 const _dirname = path.resolve();
 app.use(cookieParser());
 
+const Url = process.env.URL;
+
 const corsOptions = {
-  origin: "https://gighub-pbj.onrender.com/",
+  origin: Url,
+  // origin: "http://localhost:5173",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PETCH"],
   allowedHeaders: ["Content-Type", "Authorization", "token"]
@@ -44,7 +46,8 @@ app.use("/api/messages/", messagesRoutes);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://gighub-pbj.onrender.com/",
+    origin: Url,
+    // origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization", "token"]
@@ -63,5 +66,5 @@ app.get("*", (_, res) => {
 
 const PORT = process.env.PORT || 5029;
 server.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
+  console.log(`Backend running on ${Url}`);
 });

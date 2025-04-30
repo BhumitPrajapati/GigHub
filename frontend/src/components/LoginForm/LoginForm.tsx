@@ -32,9 +32,7 @@ export function LoginForm({
     e.preventDefault();
     try {
       const response = await axios.post(`${config.backendUrl}/login`, { email, password });
-      // console.log("Respons  e: ", response);
-      console.log(response.data.data);
-      
+
       if (response.data.data) {
         localStorage.setItem('token', response.data.data);
         setMessage(response.data.message || 'Login successful!');
@@ -87,12 +85,6 @@ export function LoginForm({
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-                  {/* <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a> */}
                 </div>
                 <Input id="password" type="password" value={password}
                   onChange={(e) => setPassword(e.target.value)} />
