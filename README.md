@@ -1,45 +1,44 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+# GigHub
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+GigHub is a platform designed to connect people in urgent need of services with skilled professionals. Whether you need a plumber, electrician, or any other service, GigHub allows you to post your requirements and get direct messages from service providers without the hassle of resumes or lengthy applications. Similarly, skilled individuals can showcase their expertise and connect with those in need of their services.
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+## Features
 
----
+- **Post Requirements**: Users can create posts detailing their urgent service needs.
+- **Showcase Skills**: Skilled professionals can post their expertise for others to find.
+- **Direct Messaging**: Enables seamless communication between users without the need for resumes or lengthy forms.
+- **Admin Dashboard**: Manage users, posts, and listings efficiently.
+- **User-Friendly Interface**: A clean and intuitive design for easy navigation.
 
-## Edit a file
+## Technologies Used
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+- **Frontend**: ReactJS, TypeScript, Vite, React Router
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (via Mongoose)
+- **Authentication**: Google OAuth 2.0
+- **Real-Time Communication**: Socket.IO for chat functionality
+- **Media Management**: Cloudinary
+- **Styling**: Tailwind CSS
+- **Hosting**: Render 
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+## Getting Started
 
----
+### Prerequisites
 
-## Create a file
+- Node.js (v16 or higher)
+- MongoDB (local or cloud instance)
+- A Google Cloud account for OAuth setup
+- A Cloudinary account for Image uplodation and fetching
 
-Next, you’ll add a new file to this repository.
+### Installation
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/BhumitPrajapati/GigHub.git
+   cd gighub```
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
-
----
-
-## Clone a repository
-
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+2. Install dependencies for both frontend and backend:
+    ```cd gighub/backend
+        npm install
+    cd ../frontend
+        npm install```
