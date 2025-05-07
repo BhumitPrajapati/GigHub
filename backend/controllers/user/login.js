@@ -2,11 +2,7 @@ const userInfoSchema = require("../../models/UserInfo");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
-const {
-  resMsg,
-  isNullUndefineOrEmpthy,
-  genrateToken
-} = require("../../middleware/authMiddleware");
+const { resMsg, isNullUndefineOrEmpthy } = require("../../middleware/authMiddleware");
 
 const createUser = async (req, res) => {
   const { firstName, lastName, location, department, skills, profilePicImageLink, email, password, role } = req.body;
@@ -42,21 +38,11 @@ const login = async (req, res) => {
       const user = await userInfoSchema.findOne({ email });
       if (!user)
         return resMsg(res, "User Not found, Please SignUp!", null, null, 400, "api/login");
-
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch)
         return resMsg(res, "Invalid credentials", null, null, 400, "api/login");
-      // console.log("a: ", user._id.toString());
-
-      const token = jwt.sign(
-        { _id: user._id.toString(), userId: user.userId, email: user.email, role: user.role, profilePicImageLink: user.profilePicImageLink, firstName: user.firstName },
+      const token = jwt.sign({ _id: user._id.toString(), userId: user.userId, email: user.email, role: user.role, profilePicImageLink: user.profilePicImageLink, firstName: user.firstName },
         process.env.JWT_SECRET, { expiresIn: "1h" });
-      // const a = {user_id: user._id,userID: user.userId,email: user.email,role: user.role, res}
-      // genrateToken(a);
-      // console.log(a);
-
-      // console.log(genrateToken);
-
       return resMsg(res, "Successfully Login", token, null, 200, "api/login");
     } else {
       resMsg(res, "Incorrect email or password.", null, null, 500, "api/login");

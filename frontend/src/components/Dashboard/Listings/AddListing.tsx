@@ -7,15 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import config from '../../../config/config';
 import { jwtDecode } from 'jwt-decode';
-// import {
-//     DropdownMenu,
-//     DropdownMenuContent,
-//     DropdownMenuLabel,
-//     DropdownMenuRadioGroup,
-//     DropdownMenuRadioItem,
-//     DropdownMenuSeparator,
-//     DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu"
 
 const AddListing = () => {
     const [jobTitle, setJobTitle] = useState('');

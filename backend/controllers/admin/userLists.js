@@ -5,8 +5,6 @@ const userListing = require("../../models/Listing")
 const getAllUserLists = async (req, res) => {
     try {
         const { _id } = req.query;
-        // console.log(_id);
-
         if (_id) {
             const result = await UserInfo.findById(_id);
             if (!result) {

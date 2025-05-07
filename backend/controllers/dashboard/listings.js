@@ -1,32 +1,14 @@
 const Listing = require("../../models/Listing");
-const {
-  isNullUndefineOrEmpthy,
-  resMsg,
-} = require("../../middleware/authMiddleware");
+const { isNullUndefineOrEmpthy, resMsg } = require("../../middleware/authMiddleware");
 
 // CREATE a new listing
 const addList = async (req, res) => {
   try {
     const { userId, jobTitle, jobDescription, department, location, status, price } = req.body;
-    if (
-      !isNullUndefineOrEmpthy(jobTitle) &&
-      !isNullUndefineOrEmpthy(jobDescription) &&
-      !isNullUndefineOrEmpthy(location) &&
-      !isNullUndefineOrEmpthy(price) &&
-      !isNullUndefineOrEmpthy(userId)
-    ) {
+    if (!isNullUndefineOrEmpthy(jobTitle) && !isNullUndefineOrEmpthy(jobDescription) && !isNullUndefineOrEmpthy(location) && !isNullUndefineOrEmpthy(price) && !isNullUndefineOrEmpthy(userId)) {
       const imageLink = req.file ? req.file.path : null;
 
-      const results = new Listing({
-        userId,
-        jobTitle,
-        jobDescription,
-        department,
-        location,
-        status,
-        price,
-        imageLink,
-      });
+      const results = new Listing({ userId, jobTitle, jobDescription, department, location, status, price, imageLink });
       await results.save();
       resMsg(res, "List added Successfully", results, null, 201, "api/listings/addList");
     } else {
@@ -79,8 +61,6 @@ const updateList = async (req, res) => {
       updatedData.imageLink = req.file.path;
     }
     const updatedListing = await Listing.findByIdAndUpdate(id, updatedData, { new: true });
-
-
     if (!updatedListing) {
       return resMsg(res, 'Data Not Found', null, null, 404, "api/listings/updateList")
     }

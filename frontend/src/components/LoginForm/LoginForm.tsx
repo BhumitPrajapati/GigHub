@@ -47,8 +47,6 @@ export function LoginForm({
         setMessage(response.data.message || 'Login failed. Please try again.');
         setIsError(true);
       }
-      // localStorage.setItem('token', response.data.data);
-      // navigate('/dashboard');
     } catch (error) {
       // console.error('Error logging in:', error);
       setIsError(true);

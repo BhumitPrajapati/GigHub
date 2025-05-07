@@ -50,22 +50,12 @@ const sendMessages = async (req, res) => {
         const image = req.file ? req.file.path : null;
         const { id: receiverId } = req.params;
         const senderId = req.user._id;
-        // const senderUserId = req.user.userId;
-
-        // console.log("Send message request:", {
-        //     senderId: senderId.toString(),
-        //     senderUserId,
-        //     receiverId,
-        //     text
-        // });
         const receiver = await UserInfo.findById(receiverId);
         if (!receiver) {
             return resMsg(res, "Receiver not found", null, null, 404, "/api/messages/send/id");
         }
-
         const receiverUserId = receiver.userId;
-        // console.log("Receiver details:", { receiverId, receiverUserId });
-
+        
         const newMsg = new Messages({
             senderId,
             receiverId,
@@ -74,24 +64,15 @@ const sendMessages = async (req, res) => {
         })
 
         const savedMessage = await newMsg.save();
-        // console.log("Message saved to database:", savedMessage._id);
-        // Emit socket event for real-time messaging
         const io = req.app.get('io'); // Access io instance from app
         const userSocketMap = req.app.get('userSocketMap') || {};
-        // console.log("Socket setup check:", {
-        //     ioExists: !!io,
-        //     userSocketMapExists: !!userSocketMap,
-        //     userSocketMapSize: Object.keys(userSocketMap).length
-        // });
         let receiverSocketId = null;
 
-        // Try MongoDB ObjectId as string
+ 
         if (userSocketMap) {
-            // Try MongoDB ObjectId as string
             if (userSocketMap[receiverId.toString()]) {
                 receiverSocketId = userSocketMap[receiverId.toString()];
             }
-            // Try custom userId
             else if (userSocketMap[receiverUserId]) {
                 receiverSocketId = userSocketMap[receiverUserId];
             }
@@ -101,9 +82,7 @@ const sendMessages = async (req, res) => {
             }
         }
 
-        // Only emit if we have both io and a valid socket
         if (io && receiverSocketId) {
-            // Convert to plain object for socket emission (prevents circular reference)
             const messageToSend = {
                 _id: savedMessage._id.toString(),
                 senderId: savedMessage.senderId.toString(),
@@ -112,12 +91,10 @@ const sendMessages = async (req, res) => {
                 image: savedMessage.image,
                 createdAt: savedMessage.createdAt
             };
-
             io.to(receiverSocketId).emit("newMessage", messageToSend);
         } else {
             console.log(`Receiver ${receiverId}/${receiverUserId} is not online or socket not found`);
         }
-
         resMsg(res, "successfullly fetch data", savedMessage, null, 200, "/api/messages/send/id");
     } catch (error) {
         console.log(error);

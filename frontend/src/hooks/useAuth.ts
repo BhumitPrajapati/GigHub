@@ -1,19 +1,5 @@
 import { jwtDecode } from 'jwt-decode';
 
-// export const useAuth = () => {
-//     const [email, setEmail] = useState('');
-
-//     useEffect(() => {
-//         const token = localStorage.getItem('token');
-//         if (token) {
-//             const decodedToken = jwtDecode(token);
-//             setEmail(decodedToken.email);
-//         }
-//     }, []);
-
-//     return { email };
-// };
-
 export const getDecodeTokenHook = () => {
     const token: string | null = localStorage.getItem('token');
     if (!token) {
