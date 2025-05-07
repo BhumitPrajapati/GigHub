@@ -33,12 +33,31 @@ GigHub is a platform designed to connect people in urgent need of services with 
 ### Installation
 
 1. Clone the repository:
-   ```bash
+   ```
+   bash
    git clone https://github.com/BhumitPrajapati/GigHub.git
    cd gighub```
 
 2. Install dependencies for both frontend and backend:
-    ```cd gighub/backend
+    ```
+   cd gighub/backend
         npm install
     cd ../frontend
-        npm install```
+        npm install
+
+3. Run Both the Backend and Frontend
+
+   #### Run Backend and Frontend Separately 
+   Open two terminal windows:
+
+   - **In the first terminal**, start the backend:
+     ```bash
+     cd gighub/backend
+     node --warch server.js
+     ```
+
+   - **In the second terminal**, start the frontend:
+     ```bash
+     cd gighub/frontend
+     npm run dev
+     ```
