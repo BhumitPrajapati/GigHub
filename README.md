@@ -1,7 +1,7 @@
 # GigHub
 
 GigHub is a platform designed to connect people in urgent need of services with skilled professionals. Whether you need a plumber, electrician, or any other service, GigHub allows you to post your requirements and get direct messages from service providers without the hassle of resumes or lengthy applications. Similarly, skilled individuals can showcase their expertise and connect with those in need of their services.
-
+- **Live Demo**: https://gighub-pbj.onrender.com/ 
 ## Features
 
 - **Post Requirements**: Users can create posts detailing their urgent service needs.
